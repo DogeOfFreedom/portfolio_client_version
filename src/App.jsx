@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Skill from "./Skill";
+import Project from "./Project";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const skills = [
+    "CSS",
+    "HTML",
+    "JS",
+    "React",
+    "NodeJS",
+    "ExpressJS",
+    "MongoDB",
+    "PostgreSQL",
+    "Prisma",
+    "Mongoose",
+  ];
+  const projects = [
+    {
+      name: "Full Stack Blog API",
+      link: "https://www.google.com",
+    },
+    {
+      name: "Mock Shopping Platform",
+      link: "https://www.google.com",
+    },
+    {
+      name: "File Uploader",
+      link: "https://www.google.com",
+    },
+  ];
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <section className="heroBanner">
+        <h1>Hi my name is Jiachen Si</h1>
+        <p>I am a passionate amateur full stack web developer</p>
+      </section>
+      <section>
+        <h2>Skills</h2>
+        <div className="itemContainer">
+          {skills.map((skill) => (
+            <Skill key={skill} name={skill} />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2>Projects</h2>
+        <div className="itemContainer">
+          {projects.map((project) => (
+            <Project
+              key={project.name}
+              name={project.name}
+              link={project.link}
+            />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2>Contact Me</h2>
+        <p>Email: jiachensi00@gmail.com</p>
+        <p>Github: https://github.com/DogeOfFreedom</p>
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
