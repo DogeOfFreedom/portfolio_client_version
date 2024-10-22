@@ -1,8 +1,8 @@
-function Project({ name, link }) {
+function Project({ name, desc, link }) {
   return (
     <div className="projectElement">
-      <p className="projectName">{name}</p>
-      <p className="projectDescription">Lorem Ipsum Un dultra</p>
+      <p className="miniHeading">{name}</p>
+      <p className="projectDescription">{desc}</p>
       <a className="linkButton" href={link}>
         View
       </a>

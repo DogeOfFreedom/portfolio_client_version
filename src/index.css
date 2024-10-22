@@ -97,6 +97,10 @@ section {
   flex-wrap: wrap;
 }
 
+.projectContainer {
+  padding: 0px 20px;
+}
+
 .skillElement {
   min-width: 50px;
   background-color: white;
@@ -116,6 +120,12 @@ section {
   background-color: white;
   color: black;
   padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
 }
 
 .linkButton {
@@ -130,4 +140,10 @@ section {
 .linkButton:hover {
   color: #53d7f2;
   border: 2px solid #53d7f2;
+}
+
+/* text classes */
+.miniHeading {
+  font-weight: bold;
+  font-size: 24px;
 }
