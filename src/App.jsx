@@ -31,37 +31,6 @@ function App() {
     fetchProjectData();
   }, []);
 
-  // Placeholder data until backend has been setup
-  const stubSkills = [
-    "CSS",
-    "HTML",
-    "JS",
-    "React",
-    "NodeJS",
-    "ExpressJS",
-    "MongoDB",
-    "PostgreSQL",
-    "Prisma",
-    "Mongoose",
-  ];
-  const stubProjects = [
-    {
-      name: "Full Stack Blog API",
-      desc: "A RESTful blog platform where users can create, read, update, and delete posts. Built with ReactJS for the front-end and NodeJS with Express for the back-end, the API manages user authentication, post management, and comment functionality. Data is stored using PostgreSQL, and Prisma is utilized for database interactions.",
-      link: "https://www.google.com",
-    },
-    {
-      name: "Mock Shopping Platform",
-      desc: "A mock e-commerce platform featuring user authentication, product browsing, cart management, and checkout processes. The front-end is developed using ReactJS, while the back-end, built with NodeJS and Express, handles product inventory and user data stored in MongoDB.",
-      link: "https://www.google.com",
-    },
-    {
-      name: "File Uploader",
-      desc: "A file uploading tool that allows users to upload, store, and manage files. The application is built with a ReactJS front-end, NodeJS/Express back-end, and handles file storage and metadata management using a cloud-based service. The project emphasizes ease of use and secure file handling.",
-      link: "https://www.google.com",
-    },
-  ];
-
   return (
     <>
       <section className="heroBanner">
@@ -72,7 +41,7 @@ function App() {
         <h2>Skills</h2>
         <div className="itemContainer">
           {skills.map((skill) => (
-            <Skill key={skill.name} name={skill.name} />
+            <Skill key={skill.name} id={skill.id} name={skill.name} />
           ))}
         </div>
       </section>
