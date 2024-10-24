@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Skill from "./Skill";
 import Project from "./Project";
+import ModalForm from "./modalForm/ModelForm";
+import AddItemButton from "./AddItemButton";
 
 function App() {
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
+  const skillFormRef = useRef(null);
+  const projectFormRef = useRef(null);
 
   useEffect(() => {
     const fetchSkillData = async () => {
@@ -39,6 +43,7 @@ function App() {
       </section>
       <section>
         <h2>Skills</h2>
+        <AddItemButton label="Add New Skill +" ref={skillFormRef} />
         <div className="itemContainer">
           {skills.map((skill) => (
             <Skill key={skill.name} id={skill.id} name={skill.name} />
@@ -47,12 +52,14 @@ function App() {
       </section>
       <section>
         <h2>Projects</h2>
+        <AddItemButton label="Add New Project +" ref={projectFormRef} />
         <div className="itemContainer projectContainer">
           {projects.map((project) => (
             <Project
               key={project.name}
-              desc={project.description}
+              id={project.id}
               name={project.name}
+              desc={project.description}
               link={project.link}
             />
           ))}
@@ -63,6 +70,8 @@ function App() {
         <p>Email: jiachensi00@gmail.com</p>
         <p>Github: https://github.com/DogeOfFreedom</p>
       </section>
+      <ModalForm ref={skillFormRef} type="skill" />
+      <ModalForm ref={projectFormRef} type="project" />
     </>
   );
 }
