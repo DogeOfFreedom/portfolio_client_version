@@ -1,10 +1,19 @@
 import { useState } from "react";
 
-function SkillForm({ id, name }) {
+function SkillForm({ id, name, reload, setReload, closeModal }) {
   const [skillName, setSkillName] = useState(name);
+  const [formError, setFormError] = useState("");
 
-  const submitForm = async () => {
+  const rerender = () => {
+    setReload(!reload);
+    closeModal();
+    setSkillName("");
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
     const data = {
+      id,
       name: skillName,
     };
     const base = "http://localhost:3000/skills";
@@ -12,26 +21,38 @@ function SkillForm({ id, name }) {
     const method = name ? "PUT" : "POST";
 
     try {
-      await fetch(url, {
+      const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+      const json = await response.json();
+      if (!json.errors) {
+        rerender();
+      } else {
+        setFormError(json.errors[0].msg);
+      }
     } catch (error) {
       console.log(error.message);
     }
   };
 
   const deleteSkill = async () => {
-    const url = "http://localhost:3000/skills/" + id;
     try {
-      await fetch(url, {
+      const url = "http://localhost:3000/skills/" + id;
+      const response = await fetch(url, {
         method: "DELETE",
       });
-    } catch (e) {
-      console.log(e.message);
+      const json = await await response.json();
+      if (!json.errors) {
+        rerender();
+      } else {
+        setFormError(json.errors[0].msg);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -45,7 +66,14 @@ function SkillForm({ id, name }) {
           onChange={(e) => setSkillName(e.target.value)}
           value={skillName}
         />
-        {name && <button type="button">Delete</button>}
+        <div>
+          <p>{formError}</p>
+        </div>
+        {name && (
+          <button type="button" onClick={deleteSkill}>
+            Delete
+          </button>
+        )}
         <button type="submit">{name ? "Change" : "Submit"}</button>
       </form>
     </>

@@ -17,7 +17,7 @@ const ModalForm = forwardRef(function ModelForm(props, ref) {
   return (
     <dialog ref={ref}>
       <button onClick={closeModal}>CLOSE MODAL</button>
-      <GenericForm {...props} />
+      <GenericForm {...props} closeModal={closeModal} />
     </dialog>
   );
 });

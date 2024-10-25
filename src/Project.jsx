@@ -1,18 +1,11 @@
 import { useRef } from "react";
 import ModalForm from "./modalForm/ModelForm";
 
-function Project({ id, name, desc, link }) {
+function Project({ id, name, desc, link, reload, setReload }) {
   const ref = useRef(null);
 
   const openModal = () => {
     ref.current.showModal();
-  };
-
-  const deleteProject = async () => {
-    const url = "http://localhost:3000/projects/" + id;
-    await fetch(url, {
-      method: "DELETE",
-    });
   };
 
   return (
@@ -33,6 +26,8 @@ function Project({ id, name, desc, link }) {
         name={name}
         desc={desc}
         link={link}
+        reload={reload}
+        setReload={setReload}
         type="project"
       />
     </>
